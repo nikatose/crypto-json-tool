@@ -71,8 +71,9 @@
 <body>
 
   <h1>Crypto JSON Tool</h1>
-  <p>Paste a simple crypto portfolio JSON and calculate its total value.</p>
-
+  <p>
+  Analyze, calculate and copy your crypto portfolio JSON.
+</p>
   <textarea id="jsonInput">[
   {
     "symbol": "BTC",
@@ -94,6 +95,10 @@
   <button onclick="analyzePortfolio()">
     Analyze Portfolio
   </button>
+  
+  <button onclick="copyJSON()">
+    Copy JSON
+</button>
 
   <div id="result"></div>
 
@@ -156,6 +161,17 @@
         `;
       }
     }
+    function copyJSON() {
+  const input = document.getElementById("jsonInput");
+
+  navigator.clipboard.writeText(input.value)
+    .then(() => {
+      alert("Portfolio JSON copied!");
+    })
+    .catch(() => {
+      alert("Could not copy JSON.");
+    });
+}
   </script>
 
 </body>
