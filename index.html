@@ -94,6 +94,10 @@
   <button onclick="analyzePortfolio()">
     Analyze Portfolio
   </button>
+  
+  <button onclick="copyJSON()">
+    Copy JSON
+</button>
 
   <div id="result"></div>
 
@@ -156,6 +160,17 @@
         `;
       }
     }
+    function copyJSON() {
+  const input = document.getElementById("jsonInput");
+
+  navigator.clipboard.writeText(input.value)
+    .then(() => {
+      alert("Portfolio JSON copied!");
+    })
+    .catch(() => {
+      alert("Could not copy JSON.");
+    });
+}
   </script>
 
 </body>
