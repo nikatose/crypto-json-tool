@@ -108,9 +108,28 @@
       const result = document.getElementById("result");
 
       try {
-        const portfolio = JSON.parse(input);
+const portfolio = JSON.parse(input);
 
-        if (!Array.isArray(portfolio)) {
+if (!Array.isArray(portfolio)) {
+  throw new Error("JSON must contain an array.");
+}
+
+for (const asset of portfolio) {
+  if (
+    typeof asset.symbol !== "string" ||
+    typeof asset.amount !== "number" ||
+    typeof asset.price !== "number"
+  ) {
+    throw new Error(
+      "Each asset must contain symbol, amount and price."
+    );
+  }
+
+  if (asset.amount < 0 || asset.price < 0) {
+    throw new Error(
+      "Amount and price cannot be negative."
+    );
+  }
           throw new Error("JSON must contain an array.");
         }
 
